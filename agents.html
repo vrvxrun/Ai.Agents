@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agents</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/favicon.png" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="https://adoption.microsoft.com/wp-content/uploads/2023/01/Microsoft-365-icon.png" alt="WEBHUB" class="logo-thumb" />
+        <div class="brand-text">
+          <h1>Agents.Ai</h1>
+          <span>AI Agents Hub</span>
+        </div>
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="agents.html" class="active">Agents</a>
+        <a href="compare.html">Compare</a>
+        <a href="integrations.html">Integrations</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="agents-hero">
+    <div class="container text-center">
+      <h1>Explore All AI Agents</h1>
+      <p>Find, compare, and connect with the world’s top AI assistants — from ChatGPT to Gemini and beyond.</p>
+    </div>
+  </section>
+
+  <!-- MAIN -->
+  <main class="container p-6">
+    <div class="search-bar">
+      <input type="text" id="searchAgent" placeholder=" Search agents (e.g. ChatGPT, Gemini...)" />
+    </div>
+
+    <div id="agents-grid" class="agents-grid"></div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© <span id="yearAgent"></span> WEBHUB</div>
+      <div class="footer-links"><a href="#">Privacy</a></div>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="scripts.js"></script>
+</body>
+</html>

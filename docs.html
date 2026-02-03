@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developers Docs</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/favicon.png">
+  <style>
+    .docs-container {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 2rem auto;
+      max-width: 1200px;
+    }
+    .sidebar {
+      flex: 1 1 250px;
+      background: #f8f9fa;
+      padding: 1rem;
+      border-radius: 12px;
+      margin-right: 1rem;
+      height: fit-content;
+      position: sticky;
+      top: 1rem;
+    }
+    .sidebar a {
+      display: block;
+      padding: 0.5rem 0.8rem;
+      margin: 0.3rem 0;
+      text-decoration: none;
+      color: #333;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    .sidebar a:hover {
+      background: #007bff;
+      color: #fff;
+    }
+    .docs-content {
+      flex: 3 1 700px;
+      background: #fff;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.05);
+    }
+    pre {
+      background: #272822;
+      color: #f8f8f2;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin-top: 1rem;
+    }
+    h2 {
+      margin-top: 2rem;
+      color: #222;
+    }
+    h3 {
+      margin-top: 1.5rem;
+      color: #444;
+    }
+    code {
+      background: #f1f1f1;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="https://adoption.microsoft.com/wp-content/uploads/2023/01/Microsoft-365-icon.png" alt="WEBHUB" class="logo-thumb">
+        <div class="brand-text">
+          <h1>Agents.Ai</h1>
+          <span>Developer Docs</span>
+        </div>
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="agents.html">Agents</a>
+        <a href="sandbox.html">Sandbox</a>
+        <a href="docs.html" class="active">Docs</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="docs-container">
+    <aside class="sidebar">
+      <h3>Contents</h3>
+      <a href="#intro">Introduction</a>
+      <a href="#auth">Authentication</a>
+      <a href="#endpoints">API Endpoints</a>
+      <a href="#examples">Examples</a>
+      <a href="#errors">Error Handling</a>
+      <a href="#best">Best Practices</a>
+      <a href="#limits">Rate Limits</a>
+      <a href="#faq">FAQ</a>
+    </aside>
+
+    <section class="docs-content">
+      <h2 id="intro">Introduction</h2>
+      <p>The WEBHUB Agents API allows developers to access multiple AI models—like GPT-4, Gemini, Grok, and Venice—through a single unified endpoint. This simplifies multi-agent integrations and ensures secure key management.</p>
+
+      <h2 id="auth">Authentication</h2>
+      <p>All requests must be authenticated using an API key obtained from your <a href="#">Developer Dashboard</a>.</p>
+      <pre><code>Authorization: Bearer YOUR_API_KEY</code></pre>
+
+      <h2 id="endpoints">API Endpoints</h2>
+      <p>Below are the core endpoints:</p>
+      <ul>
+        <li><code>POST /api/agent/:agentId/run</code> — Send a prompt to a selected AI agent</li>
+        <li><code>GET /api/agents</code> — Retrieve all available agents</li>
+        <li><code>GET /api/status</code> — Check server health</li>
+      </ul>
+
+      <h2 id="examples">Example Request</h2>
+      <pre><code>curl -X POST https://webhub.ai/api/agent/gpt-4/run \
+  -H "Authorization: Bearer sk-xxxx" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "prompt": "Write a short poem about coding."
+  }'
+</code></pre>
+
+      <h3>Example Response</h3>
+      <pre><code>{
+  "provider": "openai",
+  "data": {
+    "choices": [
+      { "message": { "content": "Code and dream in lines of light..." } }
+    ]
+  }
+}</code></pre>
+
+      <h2 id="errors">Error Handling</h2>
+      <p>Common error responses:</p>
+      <pre><code>{
+  "status": 401,
+  "message": "Invalid or missing API key."
+}</code></pre>
+
+      <h2 id="best">Best Practices</h2>
+      <ul>
+        <li>Always cache non-sensitive requests to reduce latency.</li>
+        <li>Use the POST method for longer prompts or files.</li>
+        <li>Limit concurrent calls to avoid rate limit errors.</li>
+      </ul>
+
+      <h2 id="limits">Rate Limits</h2>
+      <p>Free Tier: 100 requests/day<br>Pro Tier: 10,000 requests/day<br>Enterprise: Custom limit with dedicated bandwidth</p>
+
+      <h2 id="faq">FAQ</h2>
+      <h3>Can I use multiple agents in one call?</h3>
+      <p>Yes, using the <code>multi-agent</code> flag allows you to query several models simultaneously.</p>
+      <h3>Where do I get my API key?</h3>
+      <p>After signing up and verifying your account, navigate to the <strong>API Dashboard → Keys</strong> section.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© <span id="yearDocs"></span> WEBHUB</div>
+      <div class="footer-links"><a href="#">Privacy</a> <a href="#">Terms</a></div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", ()=>{
+      document.getElementById("yearDocs").textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>

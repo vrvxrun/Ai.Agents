@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compare</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="assets/favicon.png">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="https://adoption.microsoft.com/wp-content/uploads/2023/01/Microsoft-365-icon.png" alt="WEBHUB" class="logo-thumb">
+        <div class="brand-text">
+          <h1>Agents.Ai</h1>
+          <span>AI Agents Hub</span>
+        </div>
+      </div>
+
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="agents.html">Agents</a>
+        <a href="compare.html" class="active">Compare</a>
+        <a href="integrations.html">Integrations</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="compare-hero">
+    <div class="container text-center">
+      <h1>Compare AI Agents</h1>
+      <p>Explore the capabilities, strengths, and features of top AI models side-by-side.</p>
+      <div class="toggle-container mt-4">
+        <button id="overviewBtn" class="toggle-btn active">Overview</button>
+        <button id="detailedBtn" class="toggle-btn">Detailed</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARISON TABLE -->
+  <section class="container p-6">
+    <div id="comparison-table" class="comparison-table"></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© <span id="yearCompare"></span> WEBHUB</div>
+      <div class="footer-links"><a href="#">Privacy</a> <a href="#">Terms</a></div>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    document.addEventListener("DOMContentLoaded", ()=>{
+      document.getElementById("yearCompare").textContent = new Date().getFullYear();
+
+      const overviewBtn = document.getElementById("overviewBtn");
+      const detailedBtn = document.getElementById("detailedBtn");
+      const tableContainer = document.getElementById("comparison-table");
+
+      const agents = [
+        { name: "ChatGPT (GPT-4)", speed: "⭐️⭐️⭐️⭐️", accuracy: "High", creativity: "Excellent", api: "Yes", cost: "$20/mo", usage: "General, coding, writing" },
+        { name: "Gemini", speed: "⭐️⭐️⭐️⭐️⭐️", accuracy: "Very High", creativity: "Strong", api: "Yes", cost: "$19/mo", usage: "Web search, facts, logic" },
+        { name: "Grok", speed: "⭐️⭐️⭐️⭐️", accuracy: "Medium", creativity: "Humorous", api: "Limited", cost: "Twitter Premium+", usage: "Social, fun" },
+        { name: "Venice", speed: "⭐️⭐️⭐️", accuracy: "Medium", creativity: "Balanced", api: "No", cost: "Free", usage: "Chat, experiments" },
+        { name: "Claude 3", speed: "⭐️⭐️⭐️⭐️⭐️", accuracy: "Very High", creativity: "Excellent", api: "Yes", cost: "$25/mo", usage: "Documents, writing" },
+      ];
+
+      const renderOverview = () => {
+        tableContainer.innerHTML = `
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>Agent</th>
+                <th>Best For</th>
+                <th>Price</th>
+                <th>API Access</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${agents.map(a => `
+                <tr>
+                  <td>${a.name}</td>
+                  <td>${a.usage}</td>
+                  <td>${a.cost}</td>
+                  <td>${a.api}</td>
+                </tr>`).join('')}
+            </tbody>
+          </table>
+        `;
+      };
+
+      const renderDetailed = () => {
+        tableContainer.innerHTML = `
+          <table class="compare-table detailed">
+            <thead>
+              <tr>
+                <th>Agent</th>
+                <th>Speed</th>
+                <th>Accuracy</th>
+                <th>Creativity</th>
+                <th>API</th>
+                <th>Cost</th>
+                <th>Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${agents.map(a => `
+                <tr>
+                  <td>${a.name}</td>
+                  <td>${a.speed}</td>
+                  <td>${a.accuracy}</td>
+                  <td>${a.creativity}</td>
+                  <td>${a.api}</td>
+                  <td>${a.cost}</td>
+                  <td>${a.usage}</td>
+                </tr>`).join('')}
+            </tbody>
+          </table>
+        `;
+      };
+
+      // Default view
+      renderOverview();
+
+      overviewBtn.addEventListener("click", ()=>{
+        overviewBtn.classList.add("active");
+        detailedBtn.classList.remove("active");
+        renderOverview();
+      });
+
+      detailedBtn.addEventListener("click", ()=>{
+        detailedBtn.classList.add("active");
+        overviewBtn.classList.remove("active");
+        renderDetailed();
+      });
+    });
+  </script>
+</body>
+</html>

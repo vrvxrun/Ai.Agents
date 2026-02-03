@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Complete Payment — WEBHUB</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/favicon.png">
+  <style>
+    /* --- Quick inline styles (you can move to styles.css) --- */
+    .payment-wrapper {
+      max-width: 700px;
+      margin: 3rem auto;
+      background: #fff;
+      padding: 2rem 3rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    .payment-wrapper h2 {
+      margin-bottom: 1rem;
+      color: #222;
+    }
+    .payment-summary {
+      background: #f8f9fa;
+      padding: 1rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+    }
+    .payment-form label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: 600;
+      text-align: left;
+    }
+    .payment-form input, 
+    .payment-form select {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-top: 0.5rem;
+    }
+    .payment-form button {
+      margin-top: 2rem;
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      border-radius: 8px;
+      background: #007bff;
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .payment-form button:hover {
+      background: #0056b3;
+    }
+    .secure {
+      text-align: center;
+      margin-top: 1.5rem;
+      color: gray;
+      font-size: 0.9rem;
+    }
+    .secure img {
+      width: 90px;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="https://adoption.microsoft.com/wp-content/uploads/2023/01/Microsoft-365-icon.png" alt="WEBHUB" class="logo-thumb">
+        <div class="brand-text">
+          <h1>Agents.Ai</h1>
+          <span>AI Agents Hub</span>
+        </div>
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="agents.html">Agents</a>
+        <a href="compare.html">Compare</a>
+        <a href="integrations.html">Integrations</a>
+        <a href="pricing.html" class="active">Pricing</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="container p-6">
+      <a href="index.html" class="backlink"> ← Back</a>
+      </main>
+
+  <!-- PAYMENT FORM -->
+  <main>
+    <section class="payment-wrapper">
+      <h2>Complete Your Payment</h2>
+      <p class="muted">Secure checkout for your selected plan.</p>
+
+      <div class="payment-summary">
+        <h3 id="planName">Selected Plan: <span>Pro</span></h3>
+        <p>Price: <strong id="planPrice">$19 / month</strong></p>
+      </div>
+
+      <form class="payment-form" id="paymentForm">
+        <label for="fullname">Full Name</label>
+        <input type="text" id="fullname" placeholder="John Doe" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="you@example.com" required>
+
+        <label for="card">Card Number</label>
+        <input type="text" id="card" maxlength="16" placeholder="XXXX XXXX XXXX XXXX" required>
+
+        <div style="display: flex; gap: 1rem;">
+          <div style="flex:1;">
+            <label for="expiry">Expiry Date</label>
+            <input type="text" id="expiry" placeholder="MM/YY" required>
+          </div>
+          <div style="flex:1;">
+            <label for="cvv">CVV</label>
+            <input type="password" id="cvv" maxlength="3" placeholder="123" required>
+          </div>
+        </div>
+
+        <label for="method">Payment Method</label>
+        <select id="method">
+          <option>Visa</option>
+          <option>Mastercard</option>
+          <option>PayPal</option>
+          <option>Stripe</option>
+          <option>Crypto (BTC, ETH)</option>
+        </select>
+
+        <button type="submit">Pay Now</button>
+      </form>
+
+      <p class="secure">
+        <img src="https://www.pinclipart.com/picdir/big/14-140117_some-conditions-apply-and-all-transactions-are-subject.png" alt="SSL">
+        All payments are encrypted and secured.
+      </p>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© <span id="yearPayment"></span> WEBHUB</div>
+      <div class="footer-links"><a href="#">Privacy</a> <a href="#">Terms</a></div>
+    </div>
+  </footer>
+
+  <script>
+    // Show selected plan info from query string (?plan=pro&price=$19)
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("yearPayment").textContent = new Date().getFullYear();
+      const params = new URLSearchParams(window.location.search);
+      const plan = params.get("plan");
+      const price = params.get("price");
+
+      if(plan && price){
+        document.getElementById("planName").innerHTML = `Selected Plan: <span>${plan}</span>`;
+        document.getElementById("planPrice").textContent = price;
+      }
+
+      // Simulate payment submission
+      document.getElementById("paymentForm").addEventListener("submit", (e)=>{
+        e.preventDefault();
+        alert(" Payment successful! Thank you for choosing Agents.Ai.");
+        window.location.href = "index.html";
+      });
+    });
+  </script>
+</body>
+</html>

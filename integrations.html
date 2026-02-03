@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Integrations</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/favicon.png" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="https://adoption.microsoft.com/wp-content/uploads/2023/01/Microsoft-365-icon.png" alt="WEBHUB" class="logo-thumb" />
+        <div class="brand-text">
+          <h1>Agents.Ai</h1>
+          <span>AI Agents Hub</span>
+        </div>
+      </div>
+
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="agents.html">Agents</a>
+        <a href="compare.html">Compare</a>
+        <a href="integrations.html" class="active">Integrations</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <section class="container p-6">
+      <h2>Integrations</h2>
+      <p class="muted">Connect your favorite platforms and make every AI agent smarter.</p>
+
+      <div class="integration-controls mt-4">
+        <input type="text" id="integration-search" placeholder="Search integrations..." class="search-input" />
+      </div>
+
+      <div id="integrations-grid" class="grid grid-4 mt-6"></div>
+    </section>
+  </main>
+
+  <!-- MODAL -->
+  <div id="integration-modal" class="modal hidden">
+    <div class="modal-content">
+      <button id="modal-close" class="modal-close">&times;</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© <span id="yearInt"></span> WEBHUB</div>
+      <div class="footer-links"><a href="#">Privacy</a> <a href="#">Terms</a></div>
+    </div>
+  </footer>
+
+  <script src="scripts.js"></script>
+  <script src="integrations.js"></script>
+</body>
+</html>

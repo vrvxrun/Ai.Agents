@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Sandbox — WEBHUB</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/favicon.png">
+  <style>
+    .sandbox-container {
+      max-width: 900px;
+      margin: 3rem auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 2rem 3rem;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+    }
+    .sandbox-container h2 {
+      color: #222;
+      margin-bottom: 1rem;
+    }
+    .sandbox-container p {
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+    .sandbox-form select,
+    .sandbox-form textarea,
+    .sandbox-form button {
+      width: 100%;
+      padding: 0.9rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    .sandbox-form button {
+      background: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .sandbox-form button:hover {
+      background: #0056b3;
+    }
+    .sandbox-output {
+      background: #f8f9fa;
+      padding: 1rem;
+      border-radius: 8px;
+      min-height: 100px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="https://adoption.microsoft.com/wp-content/uploads/2023/01/Microsoft-365-icon.png" alt="WEBHUB" class="logo-thumb">
+        <div class="brand-text">
+          <h1>Agents.Ai</h1>
+          <span>AI Agents Hub</span>
+        </div>
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="agents.html">Agents</a>
+        <a href="compare.html">Compare</a>
+        <a href="integrations.html">Integrations</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="sandbox.html" class="active">Sandbox</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <section class="sandbox-container">
+      <h2>AI Agent Sandbox</h2>
+      <p>Experiment with different AI agents directly from your browser. Choose an agent, enter your prompt, and see how each one responds.</p>
+
+      <form class="sandbox-form" id="sandboxForm">
+        <label for="agent">Select Agent</label>
+        <select id="agent" required>
+          <option value="gpt-4">GPT-4 (OpenAI)</option>
+          <option value="gemini">Gemini (Google)</option>
+          <option value="grok">Grok (xAI)</option>
+          <option value="venice">Venice AI</option>
+        </select>
+
+        <label for="prompt">Enter your prompt</label>
+        <textarea id="prompt" rows="5" placeholder="Ask me anything..." required></textarea>
+
+        <button type="submit">Run Agent</button>
+      </form>
+
+      <h3>Response:</h3>
+      <div class="sandbox-output" id="sandboxOutput">Awaiting input...</div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© <span id="yearSandbox"></span> WEBHUB</div>
+      <div class="footer-links"><a href="#">Privacy</a> <a href="#">Terms</a></div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", ()=>{
+      document.getElementById("yearSandbox").textContent = new Date().getFullYear();
+      
+      const form = document.getElementById("sandboxForm");
+      const output = document.getElementById("sandboxOutput");
+
+      form.addEventListener("submit", async (e)=>{
+        e.preventDefault();
+        const agent = document.getElementById("agent").value;
+        const prompt = document.getElementById("prompt").value.trim();
+        if(!prompt) return alert("Please enter a prompt.");
+
+        output.textContent = "Processing... ⏳";
+
+        try {
+          // Call your server proxy
+          const res = await fetch(`/api/agent/${agent}/run`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ prompt })
+          });
+          const data = await res.json();
+
+          if(data.data?.choices){
+            output.textContent = data.data.choices[0].message.content;
+          } else if(data.data?.text){
+            output.textContent = data.data.text;
+          } else {
+            output.textContent = JSON.stringify(data, null, 2);
+          }
+
+        } catch (err) {
+          output.textContent = "Error: " + err.message;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

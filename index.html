@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Agents.Ai— AI Agents Hub</title>
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="https://adoption.microsoft.com/wp-content/uploads/2023/01/Microsoft-365-icon.png" alt="WEBHUB" class="logo-thumb" />
+        <div class="brand-text">
+          <h1>Agents.Ai</h1>
+          <span>AI Agents Hub</span>
+        </div>
+      </div>
+
+      <nav>
+        <a href="index.html" class="active">Home</a>
+        <a href="agents.html">Agents</a>
+        <a href="compare.html">Compare</a>
+        <a href="integrations.html">Integrations</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+      </nav>
+
+      <div class="ctas">
+        <button id="get-started" onclick="location.href='login.html'">Get Started</button></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-left">
+          <h2>One place for every AI agent.</h2>
+          <p>Compare · Connect · Deploy — Gemini, GPT-4, Grok, Venice and more in a single control plane.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="agents.html">Explore Agents</a>
+            <a class="btn ghost" href="pricing.html">Request Demo</a>
+          </div>
+          <br>
+          <br>
+          <div class="trusted">Trusted by teams — Secure connectors, analytics, and enterprise SLAs.</div>
+        </div>
+
+        <div class="hero-right">
+          <img src="https://adoption.microsoft.com/wp-content/uploads/2023/01/Microsoft-365-icon.png" alt="WEBHUB hero" class="hero-art" />
+        </div>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="container grid grid-3">
+        <div class="card">
+          <h3>Sandbox</h3>
+          <p>Try agents side-by-side with a secure sandbox.</p>
+        </div>
+        <div class="card">
+          <h3>Integrations</h3>
+          <p>Slack, GitHub, Drive, Figma and more — RBAC & tokens support.</p>
+        </div>
+        <div class="card">
+          <h3>Enterprise</h3>
+          <p>Private connectors, on-prem & VPC options, dedicated SLAs.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="preview-agents">
+      <div class="container">
+        <h3>Featured Agents</h3>
+        <div class="agent-row" id="featured-agents"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> Ai.Agents — AI Agents Hub</div>
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
+

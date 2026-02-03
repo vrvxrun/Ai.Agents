@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="assets/favicon.png">
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="https://adoption.microsoft.com/wp-content/uploads/2023/01/Microsoft-365-icon.png" alt="Agents.Ai" class="logo-thumb">
+        <div class="brand-text">
+          <h1>Agents.Ai</h1>
+          <span>AI Agents Hub</span>
+        </div>
+      </div>
+
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="agents.html">Agents</a>
+        <a href="compare.html">Compare</a>
+        <a href="integrations.html">Integrations</a>
+        <a href="pricing.html" class="active">Pricing</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <section class="container p-6 text-center">
+      <h2>Pricing Plans</h2>
+      <p class="muted">Choose the plan that fits your needs — upgrade anytime.</p>
+      
+      <div class="pricing-grid mt-6">
+        <!-- Starter -->
+        <div class="pricing-card">
+          <h3>Starter</h3>
+          <p class="price">$0 <span>/ month</span></p>
+          <ul>
+            <li>Access to GPT-4 and Gemini (basic)</li>
+            <li>Limited queries (100 / month)</li>
+            <li>Email support</li>
+          </ul>
+          <button class="subscribe-btn" onclick="location.href='payment.html?plan=Starter&price=$0/month'">Get Started</button>
+        </div>
+
+        <!-- Pro -->
+        <div class="pricing-card popular">
+          <div class="ribbon">Most Popular</div>
+          <h3>Pro</h3>
+          <p class="price">$19 <span>/ month</span></p>
+          <ul>
+            <li>All Starter features</li>
+            <li>Unlimited AI interactions</li>
+            <li>Access to Grok & Venice</li>
+            <li>Priority support + API Access</li>
+          </ul>
+          <button class="subscribe-btn accent" onclick="location.href='payment.html?plan=Pro&price=$19/month'">Subscribe Pro</button>
+        </div>
+
+        <!-- Enterprise -->
+        <div class="pricing-card">
+          <h3>Enterprise</h3>
+          <p class="price">Custom</p>
+          <ul>
+            <li>Full access to all AI agents</li>
+            <li>Team accounts & admin dashboard</li>
+            <li>Dedicated success manager</li>
+            <li>Private deployment (on-premise)</li>
+          </ul>
+          <button class="subscribe-btn" onclick="location.href='payment.html?plan=Enterprise&price=Custom'">Contact Sales</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAYMENT METHODS -->
+    <section class="container p-6 text-center mt-8">
+      <h3>Payment Methods</h3>
+      <p class="muted">We accept all major payment platforms</p>
+      <div class="payment-logos mt-4">
+        <img src="https://logowik.com/content/uploads/images/visa-payment-card1873.jpg" alt="Visa">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="Mastercard">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal">
+        <img src="https://avatars.mds.yandex.net/get-altay/14234746/2a000001932c841c6958bf5990104d08ae86/XXXL" alt="Stripe">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg" alt="Crypto">
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© <span id="yearPrice"></span> WEBHUB</div>
+      <div class="footer-links"><a href="#">Privacy</a> <a href="#">Terms</a></div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", ()=>{
+      document.getElementById("yearPrice").textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>
+
